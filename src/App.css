@@ -1,0 +1,41 @@
+body {
+    background-color: #211A1E;
+}
+
+h1 {
+    color: #C3423F;
+    text-align: center;
+    font-size: 50px;
+}
+
+
+iframe {
+    border-radius: 20px;
+    border-color: #C3423F;
+    border-width: 10px;
+    box-shadow: 0;
+}
+
+div {
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+div > input {
+    width: 50%;
+    font-size: 50px;
+    border-radius: 50px;
+    padding-left: 25px;
+    transition: 0.5s;
+}
+
+div.filmContainer {
+    text-align: center;
+    font-size: 50px;
+    color: white;
+}
+
+div > input:hover {
+    background-color: #604b57;
+    color: white;
+}
