@@ -3,6 +3,8 @@ import './App.css'
 
 function App() {
   const [link, setLink] = useState("")
+  const [isStarted, setIsStarted] = useState(false)
+  const [isError, setIsError] = useState(false)
 
 
   const validateLink = () => {
@@ -11,19 +13,28 @@ function App() {
     return regEx.test(link)
   }
 
+  const startSession = () => {
+    if (validateLink()) {
+      setIsStarted(true)
+    } else{
+      setIsError(true)
+    }
+  }
+
   return (
     <>
       <h1>Video Player</h1>
-      <div onChange={(e)=>{setLink(e.target.value)}}>
-        <input type="text" name="linkToFilm" value={link} placeholder='Put link'/>
+      <div onChange={(e)=>{setLink(e.target.value); setIsError(false)}}>
+        <p><input type="text" name="linkToFilm" value={link} placeholder='Put link'/></p>
+        <button onClick={()=>{
+          startSession()
+        }}>Start</button>
       </div>
 
       <div className="filmContainer">
-          {!validateLink() && link !== "" ? "Wrong Link" : ""}  
-          {link == "" && !validateLink() ? "No video to display" : ""}
-          {validateLink() && link !== "" ? <iframe src={link} width="1024" height="600" 
-    allowfullscreen="true" allowscriptaccess="always"/> : ""}
-  
+          {isStarted ? <iframe src={link} width="1024" height="600" 
+    allowfullscreen="true" allowscriptaccess="never"/> : ""}
+          {isError ? "Wrong link" : ""}
       </div> 
       
     </>
