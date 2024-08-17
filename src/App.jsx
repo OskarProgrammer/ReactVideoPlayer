@@ -8,9 +8,16 @@ function App() {
 
 
   const validateLink = () => {
-    const regEx = new RegExp("https://vider.info/embed/video/.*")
-    
-    return regEx.test(link)
+    const validatedSites = ["vider.info/embed/video/", "www.youtube.com/embed/"]
+
+    for (const site of validatedSites){
+      const regEx = new RegExp(`${site}.*`)
+      if (regEx.test(link)) {
+        return true
+      }
+
+    }
+    return false
   }
 
   const startSession = () => {
@@ -24,8 +31,8 @@ function App() {
   return (
     <>
       <h1>Video Player</h1>
-      <div onChange={(e)=>{setLink(e.target.value); setIsError(false)}}>
-        <p><input type="text" name="linkToFilm" value={link} placeholder='Put link'/></p>
+      <div>
+        <p><input onChange={(e)=>{setLink(e.target.value); setIsError(false)}} type="text" name="linkToFilm" value={link} placeholder='Put link'/></p>
         <button onClick={()=>{
           startSession()
         }}>Start</button>
